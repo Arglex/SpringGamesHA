@@ -1,0 +1,187 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1282926751188074363
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1775635512819136231}
+  m_Layer: 0
+  m_Name: RotationLayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1775635512819136231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282926751188074363}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2648945614363735717}
+  m_Father: {fileID: 5927000766288781282}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3255993266173493439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5927000766288781282}
+  - component: {fileID: 830627546346132141}
+  - component: {fileID: 1582474045925735889}
+  m_Layer: 0
+  m_Name: SpaceShip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5927000766288781282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3255993266173493439}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1775635512819136231}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &830627546346132141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3255993266173493439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3bc6e27f739964eb8c49a42ce697af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _afterImage: {fileID: 1582474045925735889}
+  _speed: 15
+  _dashSpeed: 40
+  _dashTiltSpeed: 2500
+  _leftCorner: {fileID: 0}
+  _rightCorner: {fileID: 0}
+  _rotationTransform: {fileID: 1775635512819136231}
+  _tiltSpeed: 200
+  _tiltAmount: 60
+  returnSpeed: 5
+  _dashCooldown: 4
+  _activeDashTimer: 0.5
+--- !u!114 &1582474045925735889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3255993266173493439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e6657b3c5bb0e44f9f101bec8ef60b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activateTime: 0.5
+  _meshRefreshRate: 0.05
+  _material: {fileID: 2100000, guid: 682d0833c4978034da124476829bc4a4, type: 2}
+  _meshDestroyTimer: 1
+  _shaderVarRef: _Alpha
+  _shaderVarRate: 0.1
+  _shaderVarRefreshRate: 0.05
+  _profile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
+  _chromaticAberration: {fileID: 0}
+--- !u!1001 &7041455871811067327
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1775635512819136231}
+    m_Modifications:
+    - target: {fileID: -4216859302048453862, guid: b10dbf1081a91c54d948bfca5f9038ce,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: b10dbf1081a91c54d948bfca5f9038ce,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: b10dbf1081a91c54d948bfca5f9038ce,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: b10dbf1081a91c54d948bfca5f9038ce,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: b10dbf1081a91c54d948bfca5f9038ce,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: b10dbf1081a91c54d948bfca5f9038ce,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: b10dbf1081a91c54d948bfca5f9038ce,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: b10dbf1081a91c54d948bfca5f9038ce,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: b10dbf1081a91c54d948bfca5f9038ce,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: b10dbf1081a91c54d948bfca5f9038ce,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: b10dbf1081a91c54d948bfca5f9038ce,
+        type: 3}
+      propertyPath: m_Name
+      value: SpaceShipGraphics
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b10dbf1081a91c54d948bfca5f9038ce, type: 3}
+--- !u!4 &2648945614363735717 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: b10dbf1081a91c54d948bfca5f9038ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 7041455871811067327}
+  m_PrefabAsset: {fileID: 0}

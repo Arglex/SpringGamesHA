@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using DG.Tweening;
 
 public class AfterImage : MonoBehaviour
 {
@@ -13,11 +16,24 @@ public class AfterImage : MonoBehaviour
     [SerializeField] private string _shaderVarRef;
     [SerializeField] private float _shaderVarRate = 0.1f;
     [SerializeField] private float _shaderVarRefreshRate = 0.5f;
+    [SerializeField] private VolumeProfile _profile;
+    [SerializeField] private ChromaticAberration _chromaticAberration;
     
     private MeshRenderer[] _meshRenderers;
+    private bool _isDashing = false;
+
+    private void Start()
+    {
+        _profile.TryGet(out _chromaticAberration);
+        _chromaticAberration.intensity.Override(0);
+    }
+
 
     public void StartAfterImageEffect()
     {
+        DOVirtual.Float(0, 360, _activateTime * 2, angle => {
+            _chromaticAberration.intensity.Override(Mathf.Sin(angle * Mathf.Deg2Rad));
+        });
         StartCoroutine(ActivateAfterImage(_activateTime));
     }
 
@@ -25,6 +41,7 @@ public class AfterImage : MonoBehaviour
     {
         while (timeActivated > 0)
         {
+            
             timeActivated -= _meshRefreshRate;
             if (_meshRenderers == null)
             {
