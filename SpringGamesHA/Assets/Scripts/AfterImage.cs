@@ -16,33 +16,32 @@ public class AfterImage : MonoBehaviour
     [SerializeField] private float _shaderVarRate = 0.1f;
     [SerializeField] private float _shaderVarRefreshRate = 0.5f;
     [SerializeField] private VolumeProfile _profile;
-    [SerializeField] private ChromaticAberration _chromaticAberration;
-    
+
     [Header("Camera")]
-    [SerializeField] private CinemachineVirtualCamera _virtualCamera;
     [SerializeField] private float _cameraEffectDuration = 1f;
-    [SerializeField] private float _startingFOV = 60f;
-    [SerializeField] private float _dashFOV = 90f;
+    [SerializeField] private float _startingFOV = 0f;
+    [SerializeField] private float _dashFOV = -0.82f;
     [SerializeField] private float _chromaticMax = 1f;
     [SerializeField] private AnimationCurve _cameraFOVCurve;
     
     private MeshRenderer[] _meshRenderers;
-
-    private void Awake()
-    {
-        _virtualCamera.m_Lens.FieldOfView = _startingFOV;
-    }
+    private ChromaticAberration _chromaticAberration;
+    private LensDistortion _lensDistortion;
+    
 
     private void Start()
     {
         _profile.TryGet(out _chromaticAberration);
         _chromaticAberration.intensity.Override(0);
+        
+        _profile.TryGet(out _lensDistortion);
+        _lensDistortion.intensity.Override(_startingFOV);
     }
 
 
     public void StartAfterImageEffect()
     {
-        DOTween.To(() => _virtualCamera.m_Lens.FieldOfView, x => _virtualCamera.m_Lens.FieldOfView = x, 
+        DOTween.To(() =>   _lensDistortion.intensity.value, x =>  _lensDistortion.intensity.value = x, 
             _dashFOV, _cameraEffectDuration).SetEase(_cameraFOVCurve);
         DOTween.To(() => _chromaticAberration.intensity.value, x => _chromaticAberration.intensity.value = x,
             _chromaticMax, _cameraEffectDuration).SetEase(_cameraFOVCurve);

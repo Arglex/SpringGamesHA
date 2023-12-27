@@ -110,11 +110,9 @@ MonoBehaviour:
   _shaderVarRate: 0.1
   _shaderVarRefreshRate: 0.05
   _profile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
-  _chromaticAberration: {fileID: 0}
-  _virtualCamera: {fileID: 0}
   _cameraEffectDuration: 1.5
-  _startingFOV: 60
-  _dashFOV: 90
+  _startingFOV: 0
+  _dashFOV: -0.82
   _chromaticMax: 1
   _cameraFOVCurve:
     serializedVersion: 2
