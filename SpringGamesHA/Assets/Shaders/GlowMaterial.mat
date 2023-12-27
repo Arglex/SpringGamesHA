@@ -61,7 +61,8 @@ Material:
     - _CastShadows: 1
     - _Cull: 2
     - _DstBlend: 10
-    - _FrenselPower: 1.25
+    - _FrenselPower: 4.92
+    - _FresnelAlpha: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 5
@@ -70,5 +71,6 @@ Material:
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _Color: {r: 3.0387578, g: 0.59462035, b: 3.4415908, a: 1}
+    - _Color: {r: 0, g: 0.38775864, b: 0.46226418, a: 0.46666667}
+    - _FresnelColor: {r: 0.17716615, g: 2.1149213, b: 1.4656675, a: 0.7882353}
   m_BuildTextureStacks: []

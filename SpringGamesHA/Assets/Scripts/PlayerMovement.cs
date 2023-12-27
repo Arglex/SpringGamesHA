@@ -1,23 +1,22 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private AfterImage _afterImage;
-    [SerializeField] private float _speed = 1f;
-    [SerializeField] private float _dashSpeed = 20f;
-    [SerializeField] private float _dashTiltSpeed = 400f;
+    
     [SerializeField] private Transform _leftCorner;
     [SerializeField] private Transform _rightCorner;
     [SerializeField] private Transform _rotationTransform;
+    [SerializeField] private AfterImage _afterImage;
+    
     [SerializeField] private float _tiltSpeed;
     [SerializeField] private float _tiltAmount;
-    [SerializeField] private float returnSpeed;
+    [SerializeField] private float _returnSpeed;
     [SerializeField] private float _dashCooldown = 4f;
     [SerializeField] private float _activeDashTimer = 1f;
+    [SerializeField] private float _speed = 15f;
+    [SerializeField] private float _dashSpeed = 40f;
+    [SerializeField] private float _dashTiltSpeed = 2500f;
+    
 
     private float _currentZRotation = 0.0f;
     private float _currentSpeed;
@@ -26,6 +25,9 @@ public class PlayerMovement : MonoBehaviour
     private float _currentlTiltSpeed;
     private float _currentDashCoolDown;
     private float _currentActiveDashTimer;
+
+    public float DashCoolDown => _dashCooldown;
+    public float CurrentDashCoolDown => _currentDashCoolDown;
 
     private void Start()
     {
@@ -70,15 +72,16 @@ public class PlayerMovement : MonoBehaviour
     
     private void Rotate(float horizontalAxis)
     {
-        if (Mathf.Abs(horizontalAxis) > 0.01f)
+        if (Mathf.Abs(horizontalAxis) > 0.5f)
         {
             float rotationAmount = -horizontalAxis * _currentlTiltSpeed * Time.deltaTime;
             _currentZRotation = Mathf.Clamp(_currentZRotation + rotationAmount, -_tiltAmount, _tiltAmount);
         }
         else
         {
-            _currentZRotation = Mathf.Lerp(_currentZRotation, 0, returnSpeed * Time.deltaTime);
+            _currentZRotation = Mathf.Lerp(_currentZRotation, 0, _returnSpeed * Time.deltaTime);
         }
+        
         _rotationTransform.rotation = Quaternion.Euler(0, 0, _currentZRotation);
     }
     

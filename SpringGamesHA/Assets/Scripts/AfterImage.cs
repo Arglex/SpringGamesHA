@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -19,8 +18,20 @@ public class AfterImage : MonoBehaviour
     [SerializeField] private VolumeProfile _profile;
     [SerializeField] private ChromaticAberration _chromaticAberration;
     
+    [Header("Camera")]
+    [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+    [SerializeField] private float _cameraEffectDuration = 1f;
+    [SerializeField] private float _startingFOV = 60f;
+    [SerializeField] private float _dashFOV = 90f;
+    [SerializeField] private float _chromaticMax = 1f;
+    [SerializeField] private AnimationCurve _cameraFOVCurve;
+    
     private MeshRenderer[] _meshRenderers;
-    private bool _isDashing = false;
+
+    private void Awake()
+    {
+        _virtualCamera.m_Lens.FieldOfView = _startingFOV;
+    }
 
     private void Start()
     {
@@ -31,9 +42,11 @@ public class AfterImage : MonoBehaviour
 
     public void StartAfterImageEffect()
     {
-        DOVirtual.Float(0, 360, _activateTime * 2, angle => {
-            _chromaticAberration.intensity.Override(Mathf.Sin(angle * Mathf.Deg2Rad));
-        });
+        DOTween.To(() => _virtualCamera.m_Lens.FieldOfView, x => _virtualCamera.m_Lens.FieldOfView = x, 
+            _dashFOV, _cameraEffectDuration).SetEase(_cameraFOVCurve);
+        DOTween.To(() => _chromaticAberration.intensity.value, x => _chromaticAberration.intensity.value = x,
+            _chromaticMax, _cameraEffectDuration).SetEase(_cameraFOVCurve);
+        
         StartCoroutine(ActivateAfterImage(_activateTime));
     }
 
@@ -53,6 +66,7 @@ public class AfterImage : MonoBehaviour
                 GameObject newObject = new GameObject();
                 MeshRenderer newMeshRenderer = newObject.AddComponent<MeshRenderer>();
                 MeshFilter newMeshFilter = newObject.AddComponent<MeshFilter>();
+                newMeshRenderer.shadowCastingMode = ShadowCastingMode.Off;
                 newMeshFilter.mesh = _meshRenderers[i]?.GetComponent<MeshFilter>()?.mesh;
 
                 newMeshRenderer.sharedMaterial = _material;
